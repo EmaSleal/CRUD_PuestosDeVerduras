@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Botones Agregar</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <section th:fragment="botonesAgregar" class="mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 py-4 " sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a href="#" class="btn btn-primary btn-block" data-toggle='modal' data-target='#agregarUsuario'>
+                            <i class="fas fa-plus"></i> [[#{accion.usuario-agregar} ]] 
+                        </a>
+                    </div>
+                    <div class="col-md-5 py-4 " sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a href="#" class="btn btn-primary btn-block" data-toggle='modal' data-target='#agregarCliente'>
+                            <i class="fas fa-plus"></i> [[#{accion.agregar} ]] 
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <section th:fragment="botonesAgregarPuesto" class="mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 py-4 " sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a href="#" class="btn btn-primary btn-block" data-toggle='modal' data-target='#agregarPuesto'>
+                            <i class="fas fa-plus"></i> [[#{accion.puesto-agregar} ]] 
+                        </a>
+                    </div>
+                    <div class="col-md-5 py-4 " sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a href="#" class="btn btn-primary btn-block" data-toggle='modal' data-target='#agregarProducto'>
+                            <i class="fas fa-plus"></i> [[#{accion.producto-agregar} ]] 
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

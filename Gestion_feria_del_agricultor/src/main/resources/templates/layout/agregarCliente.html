@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Agregar Cliente</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <section th:fragment="agregarCliente">
+            <div id="agregarCliente" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}"></h5>
+                            <button class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <form th:action="@{/guardar}" th:object="${persona}"
+                              method="post" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre" th:text="#{persona.nombre}"></label>
+                                    <input type="text" class="form-control" name="nombre" required="true"><!-- comment -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido" th:text="#{persona.apellido}"></label>
+                                    <input type="text" class="form-control" name="apellido" required="true"><!-- comment -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" th:text="#{persona.email}"></label>
+                                    <input type="email" class="form-control" name="email" required="true"><!-- comment -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono" th:text="#{persona.telefono}"></label>
+                                    <input type="tel" class="form-control" name="telefono" required="true"><!-- comment -->
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="agregarUsuario">
+            <div id="agregarUsuario" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}"></h5>
+                            <button class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <form th:action="@{/guardarUS}" th:object="${usuario}"
+                              method="post" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="username" th:text="#{usuario.username}"></label>
+                                    <input type="text" class="form-control" name="username" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" th:text="#{usuario.password}"></label>
+                                    <input type="text" class="form-control" name="password" required="true">
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="agregarProducto" id="producto">
+            <div id="agregarProducto" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}"></h5>
+                            <button class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <form th:action="@{/guardarPro}" th:object="${producto}"
+                              method="post" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre" th:text="#{producto.nombre}"></label>
+                                    <input type="text" class="form-control" name="nombre" required="true">
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="agregarPuesto">
+            <div id="agregarPuesto" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}"></h5>
+                            <button class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <form th:action="@{/guardarPues} " 
+                              method="post" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="persona" th:text="#{persona.nombre}"></label>
+                                    <select name="idPersona" >
+                                        <option th:each="persona : ${personas}" 
+                                                th:value="${persona.idPersona}" th:text="${persona.nombre}" 
+                                                ></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label  th:text="#{producto.nombre}"></label>
+                                    <select name="idProducto"  id="dropDownList">
+                                        <option th:each="p1 : ${productos}" 
+                                                th:value="${p1.idProducto}" th:text="${p1.nombre}" 
+                                                ></option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

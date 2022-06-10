@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Listado Clientes</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <section th:fragment='listadoPuestos' id="puestos">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="car-header">
+                                <h4>[[#{puesto.titulo-lista}]]</h4>
+                            </div>
+                            <div th:if='${puestos != null and !puestos.empty}'>
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th th:text='#{persona.nombre}'></th>
+                                            <th th:text='#{puesto.producto1}'></th>
+                                            <th th:text='#{puesto.producto2}'></th>
+                                            <th th:text='#{puesto.producto3}'></th>
+                                            <th th:text='#{puesto.producto4}'></th>
+                                            <th th:text='#{puesto.producto5}'></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody th:each='puesto, contador:${puestos}'>
+                                        <tr >
+                                            
+                                            <td>[[${contador.count}]]</td>
+                                            <td
+                                                <p th:each='nombre: ${puesto.nombre}'>
+                                                    <span> [[${nombre.nombre}]]</span>
+                                            </td>
+                                            <td
+                                                <p th:each='producto: ${puesto.productos}'>
+                                                    <span> [[${producto.nombre}]]</span>
+                                            </td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/editarPues/} + ${puesto.idPuesto}"
+                                                   class="btn btn-secondary">
+                                                    <i class=""></i> [[#{accion.editar}]]
+                                                </a>
+                                            </td>
+                                           
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${puestos == null or puestos.empty}">
+                                <span th:text="#{persona.lista-vacia}">Lista vacia</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card text-center bg-success text-white ">
+                            <div class="card-body">
+                                <p th:text="#{persona.totalClientes}"></p>
+                                <h4 class="display-5">
+                                    <i class="fas fa-users"></i> [[${totalPuestos}]]
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+    </body>
+</html>
